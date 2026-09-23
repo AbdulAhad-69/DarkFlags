@@ -50,4 +50,6 @@ The headline percentage is an honest **model, not a live-population measurement*
 
 Inspired by and worth comparing to [EFF Cover Your Tracks](https://coveryourtracks.eff.org), [AmIUnique](https://amiunique.org), Panopticlick, and [browserleaks.com](https://browserleaks.com). Authored by ghost cache.
 
-/_ 111006_/
+/_ 111006_/## License
+
+[MIT](LICENSE) © ghost cache
