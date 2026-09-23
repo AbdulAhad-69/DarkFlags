@@ -32,7 +32,23 @@ Every probe runs in your browser and **its results are never uploaded**. What do
 
 The headline percentage is an honest **model, not a live-population measurement** — a no-server tool can't compute true rarity against real visitors. It sums published per-signal entropy (Panopticlick, AmIUnique, EFF Cover Your Tracks), counts only what your browser actually exposes (masked canvas / GPU are discounted), applies a correlation discount, and caps at the ~33 bits needed to single out one person among ~8 billion. Treat it as an order-of-magnitude indicator. One honest wrinkle: a browser that blends into a big crowd (Tor Browser at its default size) is _safer_ than its bit-count suggests, because everyone there reports the same values. For numbers measured against a live population, compare with [EFF Cover Your Tracks](https://coveryourtracks.eff.org) and [AmIUnique](https://amiunique.org).
 
-/_ 111005_/
+## Run it
+
+A single static file — no build step, no dependencies. Any static host works:
+
+```bash
+# locally (using built-in secure server with traversal protection and clean routing)
+node tools/server.mjs            # serves on http://127.0.0.1:8080
+
+# or with Python
+python3 -m http.server 8000      # then open http://localhost:8000
+
+# Cloudflare Pages
+node tools/csp-hash.mjs          # refresh the CSP script hash in _headers after any edit to index.html
+npx wrangler pages deploy . --project-name=dark-flags
+```
+
+Host it at its own `https://` origin for the full surface — some probes (WebRTC, media devices, permissions, login-state) are limited on `file://` or inside an embedded frame.
 
 ## Files
 
