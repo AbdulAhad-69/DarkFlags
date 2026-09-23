@@ -2,7 +2,7 @@
   <img src="logo.png" alt="Dark Flags" width="480">
 </p>
 
-/_ 111004_/
+# Dark Flags
 
 **Every measurement a website can take from your browser, run live and shown back to you.**
 
