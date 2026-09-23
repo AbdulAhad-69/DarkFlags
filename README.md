@@ -28,7 +28,7 @@ Signals fold into four tiers — hardware, engine × hardware, browser build, an
 
 Every probe runs in your browser and **its results are never uploaded**. What does leave the page, all of it visible in the source: on load, the IP panel asks three public IP-intelligence APIs (ipwho.is, ipapi.is, geojs.io) and two STUN servers (Google, Cloudflare) about your address, network and VPN status, and toggling **Geo** off stops that, including requests still in flight. The login check loads one image from each service it tests, only when you press its button.
 
-### About the identifiability %
+### About the identifiability
 
 The headline percentage is an honest **model, not a live-population measurement** — a no-server tool can't compute true rarity against real visitors. It sums published per-signal entropy (Panopticlick, AmIUnique, EFF Cover Your Tracks), counts only what your browser actually exposes (masked canvas / GPU are discounted), applies a correlation discount, and caps at the ~33 bits needed to single out one person among ~8 billion. Treat it as an order-of-magnitude indicator. One honest wrinkle: a browser that blends into a big crowd (Tor Browser at its default size) is _safer_ than its bit-count suggests, because everyone there reports the same values. For numbers measured against a live population, compare with [EFF Cover Your Tracks](https://coveryourtracks.eff.org) and [AmIUnique](https://amiunique.org).
 
