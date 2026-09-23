@@ -4561,7 +4561,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     rows.forEach(r => tbody.appendChild(r));
   });
 
-/* 111003*/
+  // Network authorization actions
+  $("#btnRunNetworkLookups").addEventListener("click", enableNetworkInspection);
+  $("#btnDisableNetworkLookups").addEventListener("click", disableNetworkInspection);
+  $("#btnKeepLocalOnly").addEventListener("click", () => {
+    disableNetworkInspection();
+    alert("Local-only mode enforced. External network lookups will remain disabled.");
+  });
+
 
   // Methodology accordion triggers
   $$(".accordion-trigger").forEach(btn => {
