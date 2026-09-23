@@ -1,0 +1,25 @@
+# Cloudflare Pages security headers for Dark Flags
+#
+# Dark Flags measures which browser features are exposed, so a restrictive
+# Permissions-Policy would corrupt its own readings; there is none. The CSP is
+# real, though: the page's one inline script is authorised by its hash (not by
+# 'unsafe-inline'), so an injected event handler or script never runs even if
+# a third-party API response reached innerHTML. Anything the probes need is
+# allowed explicitly: cross-site images for the login check, data: for canvas
+# thumbnails, the three IP-intelligence APIs,
+# 'wasm-unsafe-eval' for the WebAssembly probe, and Cloudflare Web Analytics,
+# which the Pages host injects at the edge (script from static.cloudflareinsights.com,
+# beacon to cloudflareinsights.com). STUN is not governed by CSP.
+# Inline style attributes are used for the comparison bars; style injection
+# cannot run code, so style-src keeps 'unsafe-inline'.
+#
+# THE HASH MUST MATCH index.html BYTE FOR BYTE. After editing index.html run
+#   node tools/csp-hash.mjs <dir>
+# before deploying, or the browser refuses the app's own script.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://static.cloudflareinsights.com 'sha256-rkHnH/sKb5HD9gN+tABrFZhIBTXmLLQ3XMcsCKhIcsk=' 'wasm-unsafe-eval'; style-src 'unsafe-inline' https://fonts.googleapis.com; img-src * data: blob:; connect-src 'self' https://cloudflareinsights.com https://ipwho.is https://get.geojs.io https://api.ipapi.is; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' data: blob:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
